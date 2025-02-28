@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hash Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             text-align: center;
             margin: 20px;
-            background: url('https://github.com/securecey/hashgen/blob/main/background1.jpg') no-repeat center center fixed;
+            background: url('background1') no-repeat center center fixed;
             background-size: cover;
-            color: black;
+            color: white;
         }
 
         h2 {
@@ -40,9 +41,10 @@
             padding: 10px;
             margin-top: 10px;
             cursor: pointer;
-            background-color: #555;
+            background-color: var(--primary-color, #555);
             color: white;
             border: 1px solid white;
+            transition: background-color 0.3s ease;
         }
 
         input[type="text"], input[type="file"] {
@@ -54,8 +56,26 @@
             border: 1px solid white;
         }
 
+        input::placeholder {
+            color: red;
+        }
+
         button:hover {
-            background-color: #777;
+            background-color: var(--secondary-color, #777);
+        }
+
+        @media (max-width: 768px) {
+            .hash-output {
+                grid-template-columns: 1fr;
+            }
+
+            input[type="text"], input[type="file"] {
+                width: 100%;
+            }
+        }
+
+        a:focus, button:focus {
+            outline: 2px solid var(--primary-color, #3498db);
         }
     </style>
 </head>
