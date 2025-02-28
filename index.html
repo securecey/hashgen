@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: black;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hash-output {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            margin: 20px auto;
+            width: 50%;
+        }
+
+        div {
+            border: 1px solid white;
+            padding: 10px;
+            text-align: left;
+            background-color: #333;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        input[type="text"], input[type="file"] {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 50%;
+            background-color: #333;
+            color: white;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hash Generator</h2>
+
+    <!-- Text hash generator section -->
+    <section>
+        <h3>Text Hash Generator</h3>
+        <label for="inputText">Enter text to hash:</label><br>
+        <input type="text" id="inputText" placeholder="Enter text here"><br>
+        <button onclick="generateTextHash()">Generate Hash</button>
+        <button onclick="clearOutput('Text')">Clear Output</button>
+        <h4>Generated Hash:</h4>
+        <div class="hash-output">
+            <div>MD5:</div><div id="md5Text"></div>
+            <div>SHA-1:</div><div id="sha1Text"></div>
+            <div>SHA-256:</div><div id="sha256Text"></div>
+            <div>SHA-384:</div><div id="sha384Text"></div>
+            <div>SHA-512:</div><div id="sha512Text"></div>
+        </div>
+    </section>
+
+    <hr>
+
+    <!-- File hash generator section -->
+    <section>
+        <h3>File Hash Generator</h3>
+        <label for="fileInput">Select a file to hash:</label><br>
+        <input type="file" id="fileInput"><br>
+        <button onclick="generateFileHash()">Generate File Hash</button>
+        <button onclick="clearOutput('File')">Clear Output</button>
+        <h4>Generated Hash:</h4>
+        <div class="hash-output">
+            <div>MD5:</div><div id="md5File"></div>
+            <div>SHA-1:</div><div id="sha1File"></div>
+            <div>SHA-256:</div><div id="sha256File"></div>
+            <div>SHA-384:</div><div id="sha384File"></div>
+            <div>SHA-512:</div><div id="sha512File"></div>
+        </div>
+    </section>
+
+    <script>
+        async function generateTextHash() {
+            const inputText = document.getElementById("inputText").value;
+            if (!inputText) {
+                alert("Please enter some text.");
+                return;
+            }
+            await generateHash(inputText, false);
+        }
+
+        async function generateFileHash() {
+            const fileInput = document.getElementById("fileInput");
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select a file.");
+                return;
+            }
+            const fileReader = new FileReader();
+            fileReader.onload = async function(event) {
+                await generateHash(event.target.result, true);
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+
+        async function generateHash(data, isBuffer) {
+            const algorithms = {
+                "MD5": "md5",
+                "SHA-1": "SHA-1",
+                "SHA-256": "SHA-256",
+                "SHA-384": "SHA-384",
+                "SHA-512": "SHA-512"
+            };
+
+            for (let [name, algo] of Object.entries(algorithms)) {
+                let hash;
+                if (algo === "md5") {
+                    hash = isBuffer ? SparkMD5.ArrayBuffer.hash(data) : SparkMD5.hash(data);
+                } else {
+                    try {
+                        hash = await crypto.subtle.digest(algo, isBuffer ? data : new TextEncoder().encode(data));
+                        hash = bufferToHex(hash);
+                    } catch (e) {
+                        hash = "Not Supported";
+                    }
+                }
+                const id = isBuffer ? name.toLowerCase().replace(/-/g, "") + "File" : name.toLowerCase().replace(/-/g, "") + "Text";
+                document.getElementById(id).textContent = hash;
+            }
+        }
+
+        function bufferToHex(buffer) {
+            return Array.from(new Uint8Array(buffer)).map(byte => byte.toString(16).padStart(2, '0')).join('');
+        }
+
+        function clearOutput(type) {
+            const algorithms = ["md5", "sha1", "sha256", "sha384", "sha512"];
+            algorithms.forEach(algo => {
+                document.getElementById(`${algo}${type}`).textContent = "";
+            });
+        }
+    </script>
+</body>
+</html>
