@@ -40,11 +40,18 @@ h3 {
     align-items: center;
 }
 
-section > label, section > input[type="text"], section > button {
+section > label, section > input[type="text"] {
     display: block;
     margin: 0 auto 10px auto;
     text-align: center;
     width: 50%;
+}
+
+section > button {
+    display: inline-block;
+    margin: 10px 5px;
+    text-align: center;
+    width: auto;
 }
 
 .hash-output div, input[type="text"], input[type="file"] {
@@ -64,7 +71,6 @@ section > label, section > input[type="text"], section > button {
 
 button {
     padding: 10px 20px;
-    margin: 10px;
     background-color: #444;
     border: 1px solid white;
     color: white;
