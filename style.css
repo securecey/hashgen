@@ -16,6 +16,17 @@ h2 {
     border-bottom: 2px solid white;
     display: inline-block;
     padding-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+    }
 }
 
 .hash-output {
@@ -28,12 +39,20 @@ h2 {
     justify-content: left;
 }
 
-.hash-output div {
-    border: 1px solid white;
+.hash-output div, input[type="text"], input[type="file"] {
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 10px;
-    background-color: #333;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
     text-align: left;
     word-wrap: break-word;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hash-output div:hover {
+    transform: scale(1.05);
 }
 
 button {
@@ -43,21 +62,28 @@ button {
     border: 1px solid white;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 button:hover {
-    background-color: #666;
+    background: linear-gradient(45deg, #ff6600, #ffcc00);
+    color: black;
+    transform: scale(1.05);
 }
 
-input[type="text"], input[type="file"] {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 50%;
-    background-color: #333;
-    color: white;
-    border: 1px solid white;
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6600;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #333;
 }
 
 hr {
@@ -73,4 +99,8 @@ hr {
     input[type="text"], input[type="file"] {
         width: 100%;
     }
+}
+
+a:focus, button:focus {
+    outline: 2px solid #3498db;
 }
