@@ -4,6 +4,14 @@ body {
     margin: 20px;
     background-color: black;
     color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background 0.5s ease-in-out;
+}
+
+body.background-image {
+    background-image: url('https://github.com/securecey/hashgen/blob/main/background1.jpg?raw=true'); /* Default background */
 }
 
 h2 {
