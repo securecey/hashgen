@@ -57,6 +57,7 @@ section > button {
     text-align: center;
     width: auto;
     border-radius: 10px;
+    padding: 10px 20px;
 }
 
 .hash-output div, input[type="text"], input[type="file"] {
@@ -83,15 +84,12 @@ button {
     transition: background 0.3s ease, transform 0.3s ease;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: auto;
 }
 
 button:hover {
     background: linear-gradient(45deg, #ff6600, #ffcc00);
     color: black;
-}
-
-section > div {
-    text-align: center;
 }
 
 ::-webkit-scrollbar {
