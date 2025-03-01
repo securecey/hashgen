@@ -6,78 +6,7 @@
     <title>Hash Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            text-align: left;
-            margin: 20px;
-            background: url('background1') no-repeat center center fixed;
-            background-size: cover;
-            color: black;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .hash-output {
-            display: grid;
-            grid-template-columns: auto auto;
-            gap: 10px;
-            margin: 20px;
-            width: 100%;
-        }
-
-        div {
-            border: 1px solid white;
-            padding: 10px;
-            text-align: left;
-            background-color: #333;
-            width: fit-content;
-        }
-
-        button {
-            padding: 10px;
-            margin-top: 10px;
-            cursor: pointer;
-            background-color: var(--primary-color, #555);
-            color: white;
-            border: 1px solid white;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="text"], input[type="file"] {
-            margin-bottom: 10px;
-            padding: 5px;
-            width: fit-content;
-            background-color: #333;
-            color: white;
-            border: 1px solid white;
-        }
-
-        input::placeholder {
-            color: red;
-        }
-
-        button:hover {
-            background-color: var(--secondary-color, #777);
-        }
-
-        @media (max-width: 768px) {
-            .hash-output {
-                grid-template-columns: 1fr;
-            }
-
-            input[type="text"], input[type="file"] {
-                width: 100%;
-            }
-        }
-
-        a:focus, button:focus {
-            outline: 2px solid var(--primary-color, #3498db);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Hash Generator</h2>
@@ -180,4 +109,4 @@
         }
     </script>
 </body>
-</html>is 
+</html>
