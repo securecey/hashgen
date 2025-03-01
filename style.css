@@ -47,11 +47,16 @@ section > label, section > input[type="text"] {
     width: 50%;
 }
 
+section > div {
+    text-align: center;
+}
+
 section > button {
     display: inline-block;
     margin: 10px 5px;
     text-align: center;
     width: auto;
+    border-radius: 10px;
 }
 
 .hash-output div, input[type="text"], input[type="file"] {
@@ -83,6 +88,10 @@ button {
 button:hover {
     background: linear-gradient(45deg, #ff6600, #ffcc00);
     color: black;
+}
+
+section > div {
+    text-align: center;
 }
 
 ::-webkit-scrollbar {
