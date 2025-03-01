@@ -69,6 +69,7 @@ section > button {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     color: white;
     transition: transform 0.3s ease;
+    text-align: left;
 }
 
 .hash-output div:hover, button:hover {
